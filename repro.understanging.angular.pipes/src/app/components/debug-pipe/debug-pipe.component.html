@@ -1,0 +1,15 @@
+<app-card>
+  <div title>Debug Pipe</div>
+
+  <div content>
+    <app-loading [show]="!selectedUser" />
+
+    <ng-container *ngIf="selectedUser">
+      <div class="debug-header">
+        <span class="debug-label">Debug Output</span>
+        <span class="debug-badge">debugPipe | json</span>
+      </div>
+      <pre class="custom-block">{{ selectedUser | debugPipe | json }}</pre>
+    </ng-container>
+  </div>
+</app-card>

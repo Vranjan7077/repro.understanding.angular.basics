@@ -1,0 +1,78 @@
+<app-card>
+  <div title>Pure vs Impure Pipe (Dynamic Users)</div>
+
+  <div content>
+    <div class="form-section">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Name</label>
+          <input
+            type="text"
+            placeholder="Enter name"
+            [(ngModel)]="newUser.name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            placeholder="Enter username"
+            [(ngModel)]="newUser.username"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="Enter email"
+            [(ngModel)]="newUser.email"
+          />
+        </div>
+
+        <button class="add-btn" (click)="addUser()">Add User</button>
+      </div>
+    </div>
+
+    <div class="pipe-container">
+      <div class="pipe-box">
+        <div class="pipe-title pure">Pure Pipe</div>
+        <div class="counter">Executed: {{ counter.pureCount() }} times</div>
+        <ul class="user-list">
+          <li class="user-item" *ngFor="let user of users | pureFilter">
+            <div class="avatar">{{ user.name.charAt(0) }}</div>
+            <div class="user-info">
+              <div class="name">{{ user.name }}</div>
+              <div class="meta">
+                <span class="username">{{ "@" + user.username }}</span>
+                <span class="separator">&middot;</span>
+                <span class="email">{{ user.email }}</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="pipe-box">
+        <div class="pipe-title impure">Impure Pipe</div>
+        <div class="counter impure-counter">
+          Executed: {{ counter.impureCount() }} times
+        </div>
+        <ul class="user-list">
+          <li class="user-item" *ngFor="let user of users | impureFilter">
+            <div class="avatar impure-avatar">{{ user.name.charAt(0) }}</div>
+            <div class="user-info">
+              <div class="name">{{ user.name }}</div>
+              <div class="meta">
+                <span class="username">{{ "@" + user.username }}</span>
+                <span class="separator">&middot;</span>
+                <span class="email">{{ user.email }}</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</app-card>

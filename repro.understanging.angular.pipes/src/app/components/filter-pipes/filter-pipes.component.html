@@ -1,0 +1,41 @@
+<app-card>
+  <div title>Filter Pipe</div>
+
+  <div content>
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input
+        class="search-input"
+        [(ngModel)]="searchText"
+        placeholder="Search users..."
+      />
+    </div>
+
+    <app-loading [show]="isLoading" message="Loading users..." />
+
+    <div class="error-state" *ngIf="error">⚠️ {{ error }}</div>
+
+    <ng-container *ngIf="!isLoading && !error">
+      <div class="results-info" *ngIf="searchText">
+        Showing results for <strong>"{{ searchText }}"</strong>
+      </div>
+
+      <ul class="user-list">
+        <li class="user-item" *ngFor="let user of users | filter: searchText">
+          <div class="avatar">{{ user.name.charAt(0) }}</div>
+          <div class="user-details">
+            <span class="user-name">{{ user.name }}</span>
+            <span class="user-meta">{{ user.email }}</span>
+          </div>
+        </li>
+
+        <li
+          class="empty-state"
+          *ngIf="(users | filter: searchText).length === 0"
+        >
+          No users found for "{{ searchText }}"
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+</app-card>

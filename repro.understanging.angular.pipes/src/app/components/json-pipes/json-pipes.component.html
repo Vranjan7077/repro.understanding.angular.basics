@@ -1,0 +1,37 @@
+<app-card>
+  <div title>JSON Pipe</div>
+
+  <div content>
+    <div class="loading-state" *ngIf="isLoading">
+      <div class="spinner"></div>
+      <span>Loading...</span>
+    </div>
+
+    <ng-container *ngIf="!isLoading">
+      <div class="layout">
+        <div class="user-selector">
+          <div class="selector-label">Select a user to inspect</div>
+          <ul class="user-tabs user-list">
+            <li
+              class="user-item"
+              *ngFor="let user of users"
+              [class.active]="selectedUser?.id === user.id"
+              (click)="selectUser(user)"
+            >
+              <div class="avatar">{{ user.name.charAt(0) }}</div>
+              <span>{{ user.name }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="json-panel" *ngIf="selectedUser">
+          <div class="json-header">
+            <span class="json-label">JSON Output</span>
+            <span class="json-badge">json pipe</span>
+          </div>
+          <pre class="custom-block">{{ selectedUser | json }}</pre>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</app-card>

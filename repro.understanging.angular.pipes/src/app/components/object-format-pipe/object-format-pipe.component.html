@@ -1,0 +1,15 @@
+<app-card>
+  <div title>Object Format Pipe</div>
+
+  <div content>
+    <div class="loading-state" *ngIf="!selectedUser">
+      <div class="spinner"></div>
+      <span>Loading...</span>
+    </div>
+
+    <div class="user-item" *ngIf="selectedUser">
+      <div class="avatar">{{ selectedUser.name.charAt(0) }}</div>
+      <span class="formatted">{{ selectedUser | objectFormatPipe }}</span>
+    </div>
+  </div>
+</app-card>

@@ -1,0 +1,160 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  background: #f4f6f8;
+  font-family: Arial, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+
+  &.single-column {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+}
+
+.card {
+  width: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #1976d2;
+
+  &-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #1976d2;
+  }
+
+  &-content {
+    font-size: 16px;
+  }
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  background: #e8f0fe;
+  color: #1976d2;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-left: auto;
+}
+
+.post-item,
+.user-item,
+.todo-item,
+.pipe-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f9fafb;
+  border: 1px solid #eef0f3;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #eef4fd;
+    border-color: #c2d9f8;
+  }
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+
+  .panel-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+  }
+}
+
+.custom-block {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+  white-space: pre;
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f9fafb;
+  border: 1px solid #eef0f3;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #eef4fd;
+    border-color: #c2d9f8;
+  }
+
+  &.active {
+    background: #1976d2;
+    border-color: #1976d2;
+    color: white;
+
+    .avatar {
+      background: white;
+      color: #1976d2;
+    }
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #1976d2;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    .user-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .user-meta {
+      font-size: 12px;
+      color: #888;
+    }
+  }
+}

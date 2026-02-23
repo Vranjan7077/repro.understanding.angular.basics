@@ -1,0 +1,18 @@
+<app-card>
+  <div title>Custom Capitalize Pipe</div>
+
+  <div content>
+    <app-loading [show]="!posts.length" />
+
+    <ul class="post-list" *ngIf="posts.length">
+      <li class="post-item" *ngFor="let post of posts">
+        <div class="post-header">
+          <span class="post-id">#{{ post.id }}</span>
+          <span class="badge">capitalize</span>
+        </div>
+        <div class="post-title">{{ post.title | capitalize }}</div>
+        <div class="post-body">{{ post.body | capitalize }}</div>
+      </li>
+    </ul>
+  </div>
+</app-card>

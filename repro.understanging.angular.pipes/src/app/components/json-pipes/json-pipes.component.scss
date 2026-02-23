@@ -1,0 +1,82 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.user-selector {
+  flex: 0 0 220px;
+  width: 100%;
+
+  @media (min-width: 640px) {
+    width: 220px;
+  }
+
+  .selector-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+
+  .user-tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+}
+
+.json-panel {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+
+  .json-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    .json-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    .json-badge {
+      font-size: 11px;
+      font-weight: 600;
+      background: #e8f0fe;
+      color: #1976d2;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+  }
+
+  // .json-block {
+  //   background: #1e1e2e;
+  //   color: #cdd6f4;
+  //   padding: 16px;
+  //   border-radius: 10px;
+  //   font-size: 13px;
+  //   line-height: 1.7;
+  //   margin: 0;
+  //   white-space: pre;
+  //   overflow-x: auto;
+  //   word-break: normal;
+  //   max-height: 400px;
+  //   overflow-y: auto;
+  // }
+}

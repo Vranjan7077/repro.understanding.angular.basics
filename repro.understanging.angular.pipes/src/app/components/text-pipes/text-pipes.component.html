@@ -1,0 +1,33 @@
+<app-card>
+  <div title>Text Pipe</div>
+
+  <div content>
+    <div class="loading-state" *ngIf="!name">
+      <div class="spinner"></div>
+      <span>Loading...</span>
+    </div>
+
+    <ul class="pipe-list" *ngIf="name">
+      <li class="pipe-item">
+        <span class="pipe-label">Original</span>
+        <span class="pipe-value original">{{ name }}</span>
+        <span class="badge">—</span>
+      </li>
+      <li class="pipe-item">
+        <span class="pipe-label">Uppercase</span>
+        <span class="pipe-value">{{ name | uppercase }}</span>
+        <span class="badge">uppercase</span>
+      </li>
+      <li class="pipe-item">
+        <span class="pipe-label">Lowercase</span>
+        <span class="pipe-value">{{ name | lowercase }}</span>
+        <span class="badge">lowercase</span>
+      </li>
+      <li class="pipe-item">
+        <span class="pipe-label">Titlecase</span>
+        <span class="pipe-value">{{ name | titlecase }}</span>
+        <span class="badge">titlecase</span>
+      </li>
+    </ul>
+  </div>
+</app-card>

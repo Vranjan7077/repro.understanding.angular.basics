@@ -1,0 +1,13 @@
+<app-card>
+  <div title>Date Pipe</div>
+
+  <div content>
+    <p><strong>Original:</strong> {{ today }}</p>
+
+    <p><strong>Short:</strong> {{ today | date: "short" }}</p>
+
+    <p><strong>Full Date:</strong> {{ today | date: "fullDate" }}</p>
+
+    <p><strong>Custom:</strong> {{ today | date: "dd/MM/yyyy" }}</p>
+  </div>
+</app-card>

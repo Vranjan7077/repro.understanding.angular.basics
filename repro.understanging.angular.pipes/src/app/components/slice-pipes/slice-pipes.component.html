@@ -1,0 +1,21 @@
+<app-card>
+  <div title>Slice Pipe</div>
+
+  <div content>
+    <app-loading [show]="!posts.length" />
+
+    <ul class="post-list" *ngIf="posts.length">
+      <li class="post-item" *ngFor="let post of posts">
+        <div class="post-title">
+          {{ post.title | slice: post.sliceStart : post.sliceStart + 40 }}...
+        </div>
+        <div class="post-body">
+          {{ post.body | slice: post.sliceStart : post.sliceEnd }}...
+        </div>
+        <span class="badge"
+          >slice: {{ post.sliceStart }}:{{ post.sliceEnd }}</span
+        >
+      </li>
+    </ul>
+  </div>
+</app-card>

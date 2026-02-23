@@ -1,0 +1,21 @@
+<app-card>
+  <div title>HTTP Async Pipe</div>
+
+  <div content>
+    <ng-container *ngIf="users$ | async as users; else loading">
+      <ul class="user-list">
+        <li class="user-item" *ngFor="let user of users">
+          <div class="avatar">{{ user.name.charAt(0) }}</div>
+          <div class="user-details">
+            <span class="user-name">{{ user.name }}</span>
+            <span class="user-meta">{{ user.email }}</span>
+          </div>
+        </li>
+      </ul>
+    </ng-container>
+
+    <ng-template #loading>
+      <app-loading />
+    </ng-template>
+  </div>
+</app-card>

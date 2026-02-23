@@ -1,0 +1,13 @@
+<app-card>
+  <div title>Number Pipe</div>
+
+  <div content>
+    <p><strong>Original:</strong> {{ price }}</p>
+
+    <p><strong>Currency INR:</strong> {{ price | currency: "INR" }}</p>
+
+    <p><strong>Number Format:</strong> {{ price | number: "1.2-2" }}</p>
+
+    <p><strong>Percent:</strong> {{ percentage | percent }}</p>
+  </div>
+</app-card>

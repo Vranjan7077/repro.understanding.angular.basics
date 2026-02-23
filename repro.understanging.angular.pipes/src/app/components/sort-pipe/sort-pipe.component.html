@@ -1,0 +1,49 @@
+<app-card>
+  <div title>Sort Pipe</div>
+
+  <div content>
+    <div class="loading-state" *ngIf="!todos.length">
+      <div class="spinner"></div>
+      <span>Loading...</span>
+    </div>
+
+    <ng-container *ngIf="todos.length">
+      <div class="sort-toolbar">
+        <span class="sort-label">Sort by:</span>
+        <div class="sort-options">
+          <button
+            class="sort-btn"
+            [class.active]="sortField === 'completed'"
+            (click)="setSortField('completed')"
+          >
+            ✅ Status
+          </button>
+          <button
+            class="sort-btn"
+            [class.active]="sortField === 'title'"
+            (click)="setSortField('title')"
+          >
+            🔤 Title
+          </button>
+          <button
+            class="sort-btn"
+            [class.active]="sortField === 'id'"
+            (click)="setSortField('id')"
+          >
+            🔢 ID
+          </button>
+        </div>
+        <span class="badge">sortPipe: '{{ sortField }}'</span>
+      </div>
+
+      <ul class="todo-list">
+        <li class="todo-item" *ngFor="let todo of todos | sortPipe: sortField">
+          <span class="status" [class.done]="todo.completed">
+            {{ todo.completed ? "✅ Done" : "⏳ Pending" }}
+          </span>
+          <span class="title">{{ todo.title }}</span>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+</app-card>
