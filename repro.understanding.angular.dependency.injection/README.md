@@ -12,16 +12,19 @@ This project is a hands-on Angular 19 playground that demonstrates core and adva
 ## Getting Started
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Start the app:
+
 ```bash
 npm start
 ```
 
 3. Open:
+
 ```text
 http://localhost:4200
 ```
@@ -42,36 +45,47 @@ http://localhost:4200
 ## DI Scenarios Covered
 
 ### 1) Basic service injection
+
 - `BasicInjectionComponent` injects `LoggerService` and shows instance ID.
 
 ### 2) `inject()` function usage
+
 - `InjectFunctionComponent` uses `inject(LoggerService)` and logs a message.
 
 ### 3) Root singleton behavior
+
 - `SingletonCptAComponent` and `SingletonCptBComponent` both consume the same `LoggerService` (`providedIn: 'root'`).
 
 ### 4) Component-scoped provider
+
 - `ComponentProviderComponent` declares `providers: [LoggerService]`, creating a local instance per component.
 
 ### 5) Injection token (`useValue`)
+
 - `TokenInjectionComponent` provides `API_URL` token and injects it.
 
 ### 6) Factory provider (`useFactory` + `deps`)
+
 - `FactoryProviderComponent` provides `LoggerService` via `loggerFactory`, using an injected `'API_URL'` dependency.
 
 ### 7) Hierarchical DI
+
 - `ParentComponent` provides `LoggerService`; `ChildComponent` resolves the same parent-scoped instance.
 
 ### 8) Optional dependency resolution
+
 - `OptionalDiComponent` uses `inject(OptionalService, { optional: true })`.
 
 ### 9) EnvironmentInjector access
+
 - `EnvironmentInjectorComponent` resolves `LoggerService` dynamically with `EnvironmentInjector#get`.
 
 ### 10) Multi providers
+
 - `MultiProviderComponent` registers `MULTI_LOGGER` with two implementations (`ConsoleLoggerService`, `FileLoggerService`) using `multi: true`.
 
 ### 11) HTTP interceptor DI
+
 - `InterceptorDiComponent` makes `HttpClient` calls.
 - `main.ts` wires `provideHttpClient(withInterceptors([...]))` with:
   - `authInterceptor`
@@ -79,9 +93,11 @@ http://localhost:4200
   - `errorInterceptor`
 
 ### 12) Singleton vs component provider comparison
+
 - `SingletonVsComponentProviderComponent` renders both patterns in one view to compare instance sharing vs per-component instances.
 
 ### 13) Lazy route + DI
+
 - `LazyModuleDiComponent` is loaded through a named router outlet and resolves `LoggerService` in the lazy route context.
 
 ## Key Files
@@ -97,3 +113,7 @@ http://localhost:4200
 
 - Most demos display a logger instance ID so you can visually confirm injector scope.
 - The app is built for learning and experimentation rather than production architecture.
+
+## Screenshot
+
+![Angular Dependency Injection Demo](screenshots/localhost_4200.png)
