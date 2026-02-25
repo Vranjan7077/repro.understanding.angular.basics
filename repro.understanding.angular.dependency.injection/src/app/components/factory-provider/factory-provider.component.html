@@ -1,0 +1,25 @@
+<app-card>
+  <div title>Factory Provider</div>
+
+  <div content>
+    <p><strong>Logger ID:</strong> {{ loggerId }}</p>
+    <p><strong>API URL:</strong> {{ apiUrl }}</p>
+    <button (click)="logMessage()">Log Message</button>
+
+    <div *ngIf="getLogs().length > 0; else noLogs">
+      <h4>Recent Logs:</h4>
+      <ul style="font-size: 12px; max-height: 150px; overflow-y: auto">
+        <li *ngFor="let log of getLogs()">
+          <strong>{{ log.type }}:</strong> {{ log.message }} ({{
+            log.timestamp
+          }})
+        </li>
+      </ul>
+    </div>
+    <ng-template #noLogs>
+      <p style="font-size: 12px; color: #999">
+        No logs yet - click the button to log a message
+      </p>
+    </ng-template>
+  </div>
+</app-card>

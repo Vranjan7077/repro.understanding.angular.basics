@@ -1,0 +1,10 @@
+<h1 style="padding: 20px">Angular Dependency Injection Demo</h1>
+
+<div class="flex">
+  <button (click)="loadHome()">Home</button>
+  <button (click)="loadLazy()">Load Lazy</button>
+</div>
+
+<router-outlet name="dynamic"></router-outlet>
+
+<router-outlet *ngIf="!isLazyLoaded"></router-outlet>

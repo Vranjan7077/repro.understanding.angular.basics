@@ -1,0 +1,13 @@
+<app-card>
+  <div title>Multi Providers</div>
+
+  <div content>
+    <button (click)="logAll()">Log with All Services</button>
+
+    <ul>
+      <li *ngFor="let msg of messages">
+        {{ msg }}
+      </li>
+    </ul>
+  </div>
+</app-card>

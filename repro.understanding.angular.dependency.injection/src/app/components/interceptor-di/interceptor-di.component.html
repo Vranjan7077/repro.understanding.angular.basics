@@ -1,0 +1,19 @@
+<app-card>
+  <div title>HTTP Interceptor DI</div>
+
+  <div content>
+    <button class="fetch-button" (click)="makeRequest()">
+      Make HTTP Request
+    </button>
+
+    <div class="code-window" *ngIf="response">
+      <div class="window-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="file-name">response.json</span>
+      </div>
+      <pre class="code-block"><code>{{ response | json }}</code></pre>
+    </div>
+  </div>
+</app-card>
