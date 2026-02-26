@@ -1,0 +1,42 @@
+<app-card>
+  <div title>forkJoin — Parallel Calls</div>
+
+  <div content>
+    <div class="forkjoin-container">
+      <p class="description">
+        Fetches User 1, 2 and 3 simultaneously using <code>forkJoin</code>. All
+        requests run in parallel and emit once all complete.
+      </p>
+
+      <button (click)="loadParallel()" [disabled]="isLoading">
+        {{ isLoading ? "Loading..." : "Fetch in Parallel" }}
+      </button>
+
+      @if (isLoading) {
+        <div class="info-box">⏳ Running 3 requests in parallel...</div>
+      }
+
+      @if (errorMsg) {
+        <div class="error-box">✗ {{ errorMsg }}</div>
+      }
+
+      @if (results$ | async; as users) {
+        <div class="result-wrapper">
+          <p class="timing">
+            ✓ All {{ users.length }} requests completed in {{ duration }}ms
+          </p>
+          <div class="user-cards">
+            @for (user of users; track user.id) {
+              <div class="user-card">
+                <div class="user-card-header">#{{ user.id }}</div>
+                <div class="user-card-name">{{ user.name }}</div>
+                <div class="user-card-email">{{ user.email }}</div>
+                <div class="user-card-phone">{{ user.phone }}</div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</app-card>

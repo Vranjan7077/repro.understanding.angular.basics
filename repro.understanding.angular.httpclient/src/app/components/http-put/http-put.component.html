@@ -1,0 +1,86 @@
+<app-card>
+  <div title>HTTP PUT [ Update User ]</div>
+
+  <div content>
+    <div class="put-container">
+      <div class="form-group">
+        <label>User ID</label>
+        <input
+          type="number"
+          placeholder="Enter user ID (1-10)"
+          [(ngModel)]="userId"
+          min="1"
+          max="10"
+          aria-label="id"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Name</label>
+        <input
+          type="text"
+          placeholder="Enter new name"
+          [(ngModel)]="updatedUser.name"
+          aria-label="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="Enter new email"
+          [(ngModel)]="updatedUser.email"
+          aria-label="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Phone</label>
+        <input
+          type="text"
+          placeholder="Enter new phone"
+          [(ngModel)]="updatedUser.phone"
+          aria-label="phone"
+        />
+      </div>
+
+      <div class="btn-group">
+        <button
+          class="btn-update"
+          (click)="updateUser()"
+          [disabled]="isLoading"
+        >
+          {{ isLoading ? "Updating..." : "Update User" }}
+        </button>
+        <button class="btn-reset" (click)="resetForm()">Reset</button>
+      </div>
+
+      @if (errorMsg) {
+        <div class="error">{{ errorMsg }}</div>
+      }
+
+      @if (result$ | async; as user) {
+        <div class="success-card">
+          <h3>✓ User Updated!</h3>
+          <div class="user-detail">
+            <span>ID</span>
+            <span>{{ user.id }}</span>
+          </div>
+          <div class="user-detail">
+            <span>Name</span>
+            <span>{{ user.name }}</span>
+          </div>
+          <div class="user-detail">
+            <span>Email</span>
+            <span>{{ user.email }}</span>
+          </div>
+          <div class="user-detail">
+            <span>Phone</span>
+            <span>{{ user.phone }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</app-card>

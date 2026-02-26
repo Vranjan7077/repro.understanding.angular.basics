@@ -1,0 +1,63 @@
+<app-card>
+  <div title>HTTP Caching Strategy</div>
+
+  <div content>
+    <div class="controls">
+      <button
+        class="btn btn-primary"
+        (click)="loadData()"
+        [disabled]="isLoading"
+      >
+        {{ isLoading ? "Requesting..." : "Fetch Data" }}
+      </button>
+      <button
+        class="btn btn-outline"
+        (click)="clearAndRefresh()"
+        [disabled]="isLoading"
+      >
+        Bypass Cache & Refresh
+      </button>
+    </div>
+
+    @if (response$ | async; as response) {
+      <div class="code-window">
+        <div class="window-header">
+          <div class="dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="source-info">
+            @if (response.source === "cache") {
+              <span class="badge cache">⚡ CACHED</span>
+            } @else {
+              <span class="badge api">🌐 LIVE API</span>
+            }
+            <span class="file-name">users_payload.json</span>
+          </div>
+        </div>
+
+        <div class="user-grid">
+          @for (user of response.data; track user.id) {
+            <div class="user-card">
+              <div class="user-avatar">{{ user.name.charAt(0) }}</div>
+              <div class="user-info">
+                <span class="name">{{ user.name }}</span>
+                <span class="email">{{ user.email }}</span>
+              </div>
+              <div class="user-id">ID: {{ user.id }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="window-footer">
+          <span>Items: {{ response.data.length }}</span>
+          <span
+            >Response Time:
+            {{ response.source === "cache" ? "0ms" : "Variable" }}</span
+          >
+        </div>
+      </div>
+    }
+  </div>
+</app-card>

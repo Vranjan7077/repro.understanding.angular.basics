@@ -1,0 +1,60 @@
+<app-card>
+  <div title>switchMap — Sequential Calls</div>
+
+  <div content>
+    <div class="switchmap-container">
+      <p class="description">
+        Uses <code>switchMap</code> to cancel any in-flight request when a new
+        user ID is selected. Try rapidly changing the ID.
+      </p>
+
+      <div class="input-group">
+        <input
+          type="number"
+          min="1"
+          max="10"
+          [(ngModel)]="selectedId"
+          placeholder="Enter user ID (1-10)"
+        />
+        <button (click)="fetchUser()" [disabled]="isLoading">
+          {{ isLoading ? "Fetching..." : "Fetch User" }}
+        </button>
+      </div>
+
+      @if (isLoading) {
+        <div class="info-box">⏳ Fetching user {{ selectedId }}...</div>
+      }
+
+      @if (errorMsg) {
+        <div class="error-box">✗ {{ errorMsg }}</div>
+      }
+
+      @if (user$ | async; as user) {
+        @if (user) {
+          <div class="user-card">
+            <div class="user-card-row">
+              <span class="label">ID</span>
+              <span>{{ user.id }}</span>
+            </div>
+            <div class="user-card-row">
+              <span class="label">Name</span>
+              <span>{{ user.name }}</span>
+            </div>
+            <div class="user-card-row">
+              <span class="label">Email</span>
+              <span>{{ user.email }}</span>
+            </div>
+            <div class="user-card-row">
+              <span class="label">Phone</span>
+              <span>{{ user.phone }}</span>
+            </div>
+            <div class="user-card-row">
+              <span class="label">Website</span>
+              <span>{{ user.website }}</span>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</app-card>

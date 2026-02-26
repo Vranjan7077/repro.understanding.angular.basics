@@ -1,0 +1,67 @@
+<app-card>
+  <div title>HTTP POST [ Create User ]</div>
+
+  <div content>
+    <div class="post-container">
+      <div class="form-group">
+        <label>Name</label>
+        <input
+          type="text"
+          placeholder="Enter name"
+          [(ngModel)]="newUser.name"
+          aria-label="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="Enter email"
+          [(ngModel)]="newUser.email"
+          aria-label="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Phone</label>
+        <input
+          type="text"
+          placeholder="Enter phone"
+          [(ngModel)]="newUser.phone"
+          aria-label="phone"
+        />
+      </div>
+
+      <button (click)="createUser()" [disabled]="isLoading">
+        {{ isLoading ? "Creating..." : "Create User" }}
+      </button>
+
+      @if (errorMsg) {
+        <div class="error">{{ errorMsg }}</div>
+      }
+
+      @if (createdUser$ | async; as user) {
+        <div class="success-card">
+          <h3>✓ User Created!</h3>
+          <div class="user-detail">
+            <span>ID</span>
+            <span>{{ user.id }}</span>
+          </div>
+          <div class="user-detail">
+            <span>Name</span>
+            <span>{{ user.name }}</span>
+          </div>
+          <div class="user-detail">
+            <span>Email</span>
+            <span>{{ user.email }}</span>
+          </div>
+          <div class="user-detail">
+            <span>Phone</span>
+            <span>{{ user.phone }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</app-card>

@@ -1,0 +1,150 @@
+.code-window {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid #333;
+}
+
+.window-header {
+  background: #2d2d2d;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding-left: 15px;
+
+  .dots {
+    display: flex;
+    gap: 6px;
+    margin-right: 20px;
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .red {
+      background: #ff5f56;
+    }
+    .yellow {
+      background: #ffbd2e;
+    }
+    .green {
+      background: #27c93f;
+    }
+  }
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background: #1e1e1e;
+  height: 100%;
+  flex: 1;
+  padding: 0 20px;
+  border-left: 1px solid #3d3d3d;
+
+  .prompt {
+    color: #27c93f;
+    margin-right: 12px;
+    font-weight: bold;
+    font-family: "Consolas", monospace;
+    font-size: 16px;
+  }
+
+  .search-input {
+    background: transparent;
+    border: none;
+    color: #9cdcfe;
+    font-family: "Consolas", monospace;
+    font-size: 13px;
+    width: 100%;
+    outline: none;
+
+    &::placeholder {
+      color: #555;
+    }
+  }
+}
+
+.user-list-container {
+  padding: 10px 15px;
+  max-height: 320px;
+  overflow-y: auto;
+  background: #1e1e1e;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+  }
+}
+
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #2d2d2d;
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    .name {
+      color: #d4d4d4;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .email {
+      color: #858585;
+      font-size: 12px;
+    }
+  }
+
+  .meta-data {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    .id-badge {
+      color: #569cd6;
+      font-family: monospace;
+      font-size: 11px;
+    }
+    .status-tag {
+      font-size: 9px;
+      background: #252526;
+      color: #6a9955;
+      padding: 2px 6px;
+      border-radius: 3px;
+      border: 1px solid #6a9955;
+    }
+  }
+}
+
+.window-footer {
+  background: #252526;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #333;
+  color: #858585;
+  font-size: 11px;
+  font-family: monospace;
+  .separator {
+    margin: 0 8px;
+    color: #444;
+  }
+  .query-info {
+    color: #ce9178;
+  }
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px;
+  color: #ce9178;
+  font-family: monospace;
+}

@@ -1,0 +1,54 @@
+<app-card>
+  <div title>User Directory Pagination</div>
+
+  <div content>
+    @if (users$ | async; as allUsers) {
+      <div class="code-window">
+        <div class="window-header">
+          <div class="dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="file-name">page_{{ currentPage() }}.json</span>
+        </div>
+
+        <div class="user-list-container">
+          @for (user of getPaginatedUsers(allUsers); track user.id) {
+            <div class="user-item">
+              <div class="user-id">#{{ user.id }}</div>
+              <div class="user-details">
+                <div class="name">{{ user.name }}</div>
+                <div class="company">{{ user.company.name }}</div>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="pagination-controls">
+          <button
+            (click)="prev()"
+            [disabled]="currentPage() === 1"
+            class="page-btn"
+          >
+            &larr; Prev
+          </button>
+
+          <span class="page-indicator">
+            Page <strong>{{ currentPage() }}</strong> of 4
+          </span>
+
+          <button
+            (click)="next()"
+            [disabled]="currentPage() === 4"
+            class="page-btn"
+          >
+            Next &rarr;
+          </button>
+        </div>
+      </div>
+    } @else {
+      <div class="loading">Booting user stream...</div>
+    }
+  </div>
+</app-card>

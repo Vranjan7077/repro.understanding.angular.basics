@@ -1,0 +1,57 @@
+<app-card>
+  <div title>Searchable User Directory</div>
+
+  <div content>
+    <div class="code-window">
+      <div class="window-header">
+        <div class="dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="search-bar">
+          <span class="icon">🔍</span>
+          <input
+            type="text"
+            [ngModel]="searchQuery()"
+            (ngModelChange)="updateQuery($event)"
+            placeholder="Search users..."
+          />
+        </div>
+      </div>
+
+      <div class="list-area">
+        @for (user of paginatedUsers(); track user.id) {
+          <div class="user-row">
+            <div class="avatar">{{ user.name[0] }}</div>
+            <div class="details">
+              <span class="name">{{ user.name }}</span>
+              <span class="email">{{ user.email }}</span>
+            </div>
+            <div class="id-tag">#{{ user.id }}</div>
+          </div>
+        } @empty {
+          <div class="empty-state">No users match your terminal query.</div>
+        }
+      </div>
+
+      <div class="window-footer">
+        <div class="stats">
+          Total: {{ filteredUsers().length }} | Page {{ currentPage() }} of
+          {{ totalPages() }}
+        </div>
+        <div class="nav">
+          <button (click)="changePage(-1)" [disabled]="currentPage() === 1">
+            Prev
+          </button>
+          <button
+            (click)="changePage(1)"
+            [disabled]="currentPage() >= totalPages()"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-card>

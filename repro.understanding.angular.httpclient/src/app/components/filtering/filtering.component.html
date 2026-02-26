@@ -1,0 +1,53 @@
+<app-card>
+  <div title>Real-time Data Filtering</div>
+
+  <div content>
+    <div class="code-window">
+      <div class="window-header">
+        <div class="dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="search-container">
+          <span class="prompt">></span>
+          <input
+            type="text"
+            placeholder="search --filter..."
+            [ngModel]="searchQuery()"
+            (ngModelChange)="searchQuery.set($event)"
+            class="search-input"
+          />
+        </div>
+      </div>
+
+      <div class="user-list-container">
+        @for (user of filteredUsers(); track user.id) {
+          <div class="user-item">
+            <div class="user-info">
+              <span class="name">{{ user.name }}</span>
+              <span class="email">{{ user.email }}</span>
+            </div>
+            <div class="meta-data">
+              <span class="id-badge">ID: {{ user.id }}</span>
+              <div class="status-tag">ACTIVE</div>
+            </div>
+          </div>
+        } @empty {
+          <div class="no-results">
+            <p>ERR: No matches found for "{{ searchQuery() }}"</p>
+          </div>
+        }
+      </div>
+
+      <div class="window-footer">
+        <div class="stats">
+          <span>Found: {{ filteredUsers().length }} users</span>
+          <span class="separator">|</span>
+          <span>Buffer: {{ filteredUsers().length * 124 | number }} bytes</span>
+        </div>
+        <div class="query-info">QUERY: "{{ searchQuery() || "*" }}"</div>
+      </div>
+    </div>
+  </div>
+</app-card>

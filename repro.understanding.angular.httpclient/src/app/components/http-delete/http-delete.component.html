@@ -1,0 +1,39 @@
+<app-card>
+  <div title>HTTP Delete User</div>
+
+  <div content>
+    <div class="delete-container">
+      <div class="form-group">
+        <label>User ID</label>
+        <input
+          type="number"
+          placeholder="Enter user ID to delete"
+          [(ngModel)]="userId"
+          aria-label="number"
+        />
+      </div>
+
+      <div class="btn-group">
+        <button
+          class="btn-delete"
+          (click)="deleteUser()"
+          [disabled]="isLoading"
+        >
+          {{ isLoading ? "Deleting..." : "Delete User" }}
+        </button>
+        <button class="btn-reset" (click)="reset()">Reset</button>
+      </div>
+
+      @if (errorMsg) {
+        <div class="error">{{ errorMsg }}</div>
+      }
+
+      @if (successMsg) {
+        <div class="success-card">
+          <h3>✓ {{ successMsg }}</h3>
+          <p>The user has been removed from the system.</p>
+        </div>
+      }
+    </div>
+  </div>
+</app-card>

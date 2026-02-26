@@ -1,0 +1,9 @@
+<app-card>
+  <div title>Async Pipe</div>
+
+  <div content>
+    <ul *ngFor="let user of users$ | async">
+      <li>{{ user.name }}</li>
+    </ul>
+  </div>
+</app-card>

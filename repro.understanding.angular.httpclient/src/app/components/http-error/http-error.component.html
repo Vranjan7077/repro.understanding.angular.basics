@@ -1,0 +1,36 @@
+<app-card>
+  <div title>HTTP Error Handling</div>
+
+  <div content>
+    <div class="error-container">
+      <p class="description">Trigger different HTTP error scenarios below:</p>
+
+      <div class="btn-group">
+        <button class="btn-success" (click)="triggerSuccess()">
+          ✓ 200 Success
+        </button>
+        <button class="btn-warn" (click)="triggerNotFound()">
+          ✗ 404 Not Found
+        </button>
+        <button class="btn-danger" (click)="triggerServerError()">
+          ✗ 500 Server Error
+        </button>
+        <button class="btn-network" (click)="triggerNetworkError()">
+          ✗ Network Error
+        </button>
+      </div>
+
+      @if (isLoading) {
+        <div class="status-box loading">⏳ Sending request...</div>
+      }
+
+      @if (successMsg) {
+        <div class="status-box success">✓ {{ successMsg }}</div>
+      }
+
+      @if (errorMsg) {
+        <div class="status-box error">✗ {{ errorMsg }}</div>
+      }
+    </div>
+  </div>
+</app-card>

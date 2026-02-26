@@ -1,0 +1,11 @@
+<app-card>
+  <div title>HTTP GET Request</div>
+
+  <div content>
+    <button (click)="loadUsers()">Load Users</button>
+
+    <ul *ngFor="let user of users">
+      <li>{{ user.name }}</li>
+    </ul>
+  </div>
+</app-card>

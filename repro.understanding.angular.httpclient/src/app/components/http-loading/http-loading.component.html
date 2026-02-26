@@ -1,0 +1,30 @@
+<app-card>
+  <div title>Loading Demo</div>
+
+  <div content>
+    <div class="loading-container">
+      <button (click)="loadUsers()" [disabled]="isLoading">
+        {{ isLoading ? "Loading..." : "Fetch Users" }}
+      </button>
+
+      @if (isLoading) {
+        <div class="spinner-wrapper">
+          <div class="spinner"></div>
+          <p>Fetching users, please wait...</p>
+        </div>
+      }
+
+      @if (users$ | async; as users) {
+        <ul class="user-list">
+          @for (user of users | slice: 0 : 5; track user.id) {
+            <li class="user-item">
+              <span class="user-id">#{{ user.id }}</span>
+              <span class="user-name">{{ user.name }}</span>
+              <span class="user-email">{{ user.email }}</span>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+</app-card>

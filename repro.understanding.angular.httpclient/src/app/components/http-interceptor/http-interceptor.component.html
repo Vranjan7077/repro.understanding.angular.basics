@@ -1,0 +1,57 @@
+<app-card>
+  <div title>Interceptor</div>
+
+  <div content>
+    <div class="interceptor-container">
+      <p class="description">
+        The <code>loggingInterceptor</code> logs every request and response to
+        the console. This demo also shows a visual log of intercepted activity.
+      </p>
+
+      <div class="btn-group">
+        <button
+          class="btn-success"
+          (click)="makeRequest()"
+          [disabled]="isLoading"
+        >
+          ✓ Valid Request
+        </button>
+        <button
+          class="btn-danger"
+          (click)="makeFailingRequest()"
+          [disabled]="isLoading"
+        >
+          ✗ Failing Request
+        </button>
+        <button class="btn-clear" (click)="clearLogs()">Clear Logs</button>
+      </div>
+
+      <div class="log-console">
+        <div class="log-header">
+          <span>Activity Log</span>
+          <span class="log-count">{{ logs.length }} entries</span>
+        </div>
+
+        @if (logs.length === 0) {
+          <div class="log-empty">No activity yet. Make a request above.</div>
+        }
+
+        @for (log of logs; track $index) {
+          <div class="log-entry" [class]="log.type">
+            <span class="log-time">{{ log.timestamp }}</span>
+            <span class="log-icon">
+              {{
+                log.type === "request"
+                  ? "→"
+                  : log.type === "response"
+                    ? "←"
+                    : "✗"
+              }}
+            </span>
+            <span class="log-message">{{ log.message }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</app-card>
