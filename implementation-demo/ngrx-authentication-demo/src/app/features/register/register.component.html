@@ -1,0 +1,87 @@
+<div class="main-div">
+  <mat-card class="auth-card">
+    <mat-toolbar color="primary" class="card-heading">Register</mat-toolbar>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" aria-label="Name" />
+        <mat-error *ngIf="name?.errors?.['required']"
+          >Name is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          aria-label="Email"
+        />
+        <mat-error *ngIf="email?.errors?.['required']"
+          >Email is required</mat-error
+        >
+        <mat-error *ngIf="email?.errors?.['email']"
+          >Invalid email format</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          aria-label="Password"
+        />
+        <mat-error *ngIf="password?.errors?.['required']"
+          >Password is required</mat-error
+        >
+        <mat-error *ngIf="password?.errors?.['minlength']"
+          >Minimum 8 characters</mat-error
+        >
+        <mat-error *ngIf="password?.errors?.['pattern']"
+          >Must include uppercase, lowercase, number, and special
+          character</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Re-Enter Password</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="confirmPassword"
+          aria-label="Confirm Password"
+        />
+        <mat-error *ngIf="confirmPassword?.errors?.['required']"
+          >Confirm password is required</mat-error
+        >
+        <mat-error *ngIf="isPasswordMismatch()"
+          >Passwords do not match</mat-error
+        >
+      </mat-form-field>
+
+      <div class="api-error" *ngIf="error$ | async as error">{{ error }}</div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="loading$ | async"
+      >
+        <mat-spinner
+          diameter="20"
+          *ngIf="loading$ | async; else label"
+        ></mat-spinner>
+        <ng-template #label>Register</ng-template>
+      </button>
+
+      <div class="button-row">
+        <span>Already have an account?</span>
+        <a routerLink="/login">Login</a>
+      </div>
+    </form>
+  </mat-card>
+</div>

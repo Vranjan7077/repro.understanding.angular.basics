@@ -1,0 +1,98 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.main-div {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  padding-bottom: 16px;
+}
+
+.card-heading {
+  font-size: 18px;
+  font-weight: 500;
+  justify-content: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.api-error {
+  color: #f44336;
+  font-size: 13px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.api-success {
+  color: #4caf50;
+  font-size: 13px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+  font-size: 14px;
+
+  a {
+    text-decoration: none;
+    color: #3f51b5;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+::ng-deep .auth-form {
+  .mat-mdc-form-field-subscript-wrapper {
+    position: relative !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+  .mat-mdc-form-field-error-wrapper {
+    position: relative !important;
+    height: auto !important;
+    padding: 4px 16px 0 !important;
+    overflow: visible !important;
+  }
+  .mat-mdc-form-field-hint-wrapper {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+}

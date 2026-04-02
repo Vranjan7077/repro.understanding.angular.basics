@@ -1,0 +1,61 @@
+<div class="main-div">
+  <mat-card class="auth-card">
+    <mat-toolbar color="primary" class="card-heading">Login</mat-toolbar>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="auth-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          aria-label="Email"
+        />
+        <mat-error *ngIf="email?.errors?.['required']"
+          >Email is required</mat-error
+        >
+        <mat-error *ngIf="email?.errors?.['email']"
+          >Invalid email format</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error *ngIf="password?.errors?.['required']"
+          >Password is required</mat-error
+        >
+        <mat-error *ngIf="password?.errors?.['minlength']"
+          >Minimum 6 characters</mat-error
+        >
+      </mat-form-field>
+
+      <div class="api-error" *ngIf="error$ | async as error">{{ error }}</div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="loading$ | async"
+      >
+        <mat-spinner
+          diameter="20"
+          *ngIf="loading$ | async; else label"
+        ></mat-spinner>
+        <ng-template #label>Login</ng-template>
+      </button>
+
+      <div class="button-row">
+        <a routerLink="/register">Register</a>
+        <a routerLink="/forgot-password">Forgot Password?</a>
+      </div>
+    </form>
+  </mat-card>
+</div>
