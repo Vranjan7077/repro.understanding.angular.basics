@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+$valid-color: #198754;
+$invalid-color: #dc3545;
+
+.form-control {
+  &.ng-touched {
+    &.ng-invalid {
+      border: 1px solid $invalid-color;
+
+      &:focus {
+        box-shadow: 0 0 0 0.2rem rgba($invalid-color, 0.25);
+      }
+    }
+
+    &.ng-valid {
+      border: 1px solid $valid-color;
+
+      &:focus {
+        box-shadow: 0 0 0 0.2rem rgba($valid-color, 0.25);
+      }
+    }
+  }
+}

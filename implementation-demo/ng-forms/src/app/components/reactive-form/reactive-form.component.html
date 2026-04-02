@@ -1,0 +1,261 @@
+<div class="container-fluid">
+  <h1 class="text-center">User Details</h1>
+
+  <div class="form-container col-md-6 mx-auto mt-5">
+    <form [formGroup]="userDetailsForm" (ngSubmit)="sendData()">
+      <h2 class="text-center">Personal Details</h2>
+
+      <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="firstname"
+          appTrim
+        />
+
+        <div
+          class="text-danger"
+          *ngIf="userDetailsForm.get('firstname')?.touched"
+        >
+          <div *ngIf="userDetailsForm.get('firstname')?.errors?.['required']">
+            First name is required
+          </div>
+          <div
+            *ngIf="
+              userDetailsForm.get('firstname')?.errors?.['minlength'] ||
+              userDetailsForm.get('firstname')?.errors?.['maxlength']
+            "
+          >
+            Enter valid name (4–15 chars)
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="lastname"
+          appTrim
+        />
+
+        <div
+          class="text-danger"
+          *ngIf="userDetailsForm.get('lastname')?.touched"
+        >
+          <div *ngIf="userDetailsForm.get('lastname')?.errors?.['required']">
+            Last name is required
+          </div>
+          <div
+            *ngIf="
+              userDetailsForm.get('lastname')?.errors?.['minlength'] ||
+              userDetailsForm.get('lastname')?.errors?.['maxlength']
+            "
+          >
+            Enter valid name (5–20 chars)
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="emailAddress"
+          appTrim
+        />
+
+        <div
+          class="text-danger"
+          *ngIf="userDetailsForm.get('emailAddress')?.touched"
+        >
+          <div
+            *ngIf="userDetailsForm.get('emailAddress')?.errors?.['required']"
+          >
+            Email is required
+          </div>
+          <div *ngIf="userDetailsForm.get('emailAddress')?.errors?.['email']">
+            Invalid email format
+          </div>
+          <div *ngIf="userDetailsForm.get('emailAddress')?.errors?.['pattern']">
+            Enter valid email
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Mobile</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="mobile"
+          aria-label="mobile"
+        />
+
+        <div class="text-danger" *ngIf="userDetailsForm.get('mobile')?.touched">
+          <div *ngIf="userDetailsForm.get('mobile')?.errors?.['required']">
+            Mobile is required
+          </div>
+          <div *ngIf="userDetailsForm.get('mobile')?.errors?.['pattern']">
+            Enter valid 10-digit mobile
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label d-block">Gender</label>
+
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            formControlName="gender"
+            value="male"
+          />
+          <label class="form-check-label">Male</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            formControlName="gender"
+            value="female"
+          />
+          <label class="form-check-label">Female</label>
+        </div>
+      </div>
+
+      <h5>Current Address</h5>
+      <div formGroupName="currentAddress">
+        <input
+          class="form-control mb-2"
+          placeholder="Street"
+          formControlName="street"
+          appTrim
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            userDetailsForm.get('currentAddress.street')?.touched &&
+            userDetailsForm.get('currentAddress.street')?.errors?.['required']
+          "
+        >
+          Street is required
+        </div>
+
+        <input
+          class="form-control mb-2"
+          placeholder="City"
+          formControlName="city"
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            userDetailsForm.get('currentAddress.city')?.touched &&
+            userDetailsForm.get('currentAddress.city')?.errors?.['required']
+          "
+        >
+          City is required
+        </div>
+
+        <input
+          class="form-control mb-2"
+          placeholder="Country"
+          formControlName="country"
+          appTrim
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            userDetailsForm.get('currentAddress.country')?.touched &&
+            userDetailsForm.get('currentAddress.country')?.errors?.['required']
+          "
+        >
+          Country is required
+        </div>
+
+        <input
+          class="form-control mb-2"
+          placeholder="Pincode"
+          formControlName="pincode"
+          appTrim
+        />
+        <div
+          class="text-danger"
+          *ngIf="userDetailsForm.get('currentAddress.pincode')?.touched"
+        >
+          <div
+            *ngIf="
+              userDetailsForm.get('currentAddress.pincode')?.errors?.[
+                'required'
+              ]
+            "
+          >
+            Pincode required
+          </div>
+          <div
+            *ngIf="
+              userDetailsForm.get('currentAddress.pincode')?.errors?.['pattern']
+            "
+          >
+            Invalid pincode
+          </div>
+        </div>
+      </div>
+
+      <div class="form-check my-3">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          [formControl]="isSameAddressControl"
+        />
+        <label class="form-check-label">Same as Current Address</label>
+      </div>
+
+      <h5>Permanent Address</h5>
+      <div formGroupName="permanentAddress">
+        <input
+          class="form-control mb-2"
+          placeholder="Street"
+          formControlName="street"
+          appTrim
+        />
+        <input
+          class="form-control mb-2"
+          placeholder="City"
+          formControlName="city"
+        />
+        <input
+          class="form-control mb-2"
+          placeholder="Country"
+          formControlName="country"
+          appTrim
+        />
+        <input
+          class="form-control mb-2"
+          placeholder="Pincode"
+          formControlName="pincode"
+          appTrim
+        />
+      </div>
+
+      <div class="text-center mt-4">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="userDetailsForm.invalid"
+        >
+          Submit
+        </button>
+
+        <button type="button" class="btn btn-danger ms-2" (click)="resetData()">
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
