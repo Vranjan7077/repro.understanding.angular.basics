@@ -1,0 +1,75 @@
+/* Full page center layout */
+.main-div {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+}
+
+/* Card styling */
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Toolbar header */
+.login_page_THeading {
+  font-size: 18px;
+  font-weight: 500;
+  justify-content: center;
+}
+
+/* Form layout */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+}
+
+/* Full width fields */
+.full-width {
+  width: 100%;
+}
+
+/* Login button */
+button[mat-raised-button] {
+  height: 45px;
+  font-size: 15px;
+  border-radius: 6px;
+}
+
+/* Links section */
+.button-row {
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* Links styling */
+.button-row a {
+  text-decoration: none;
+  color: #3f51b5;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.button-row a:hover {
+  text-decoration: underline;
+  color: #303f9f;
+}
+
+/* Input spacing fix */
+mat-form-field {
+  width: 100%;
+}
+
+/* Responsive (mobile) */
+@media (max-width: 480px) {
+  .login-card {
+    margin: 0 16px;
+  }
+}

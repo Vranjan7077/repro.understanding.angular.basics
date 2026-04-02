@@ -1,0 +1,93 @@
+<div class="main-div">
+  <mat-card class="register-card">
+    <mat-toolbar color="primary" class="login_page_THeading">
+      Register Page
+    </mat-toolbar>
+
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+      class="register-form"
+    >
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" aria-label="Name" />
+        <mat-error *ngIf="name?.touched && name?.errors?.['required']">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          aria-label="Email"
+        />
+        <mat-error *ngIf="email?.touched && email?.errors?.['required']"
+          >Email is required</mat-error
+        >
+        <mat-error *ngIf="email?.touched && email?.errors?.['email']"
+          >Invalid email format</mat-error
+        >
+        <mat-error *ngIf="email?.touched && email?.errors?.['emailTaken']"
+          >Email already taken</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          aria-label="Password"
+        />
+        <mat-error *ngIf="password?.touched && password?.errors?.['required']"
+          >Password is required</mat-error
+        >
+        <mat-error *ngIf="password?.touched && password?.errors?.['minlength']"
+          >Minimum 8 characters</mat-error
+        >
+        <mat-error *ngIf="password?.touched && password?.errors?.['pattern']">
+          Must include uppercase, lowercase, number, and special character
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Re-Enter Password</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="confirmPassword"
+          aria-label="Confirm Password"
+        />
+        <mat-error
+          *ngIf="
+            confirmPassword?.touched && confirmPassword?.errors?.['required']
+          "
+        >
+          Confirm password is required
+        </mat-error>
+        <mat-error *ngIf="isPasswordMismatch()"
+          >Passwords do not match</mat-error
+        >
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="registerForm.invalid"
+      >
+        Register
+      </button>
+
+      <div class="button-row">
+        <span>Already have an account?</span>
+        <a routerLink="/" class="register-btn">Login</a>
+      </div>
+    </form>
+  </mat-card>
+</div>

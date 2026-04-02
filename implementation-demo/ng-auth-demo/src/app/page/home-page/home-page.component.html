@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <span>Welcome, {{ user?.name || "User" }}</span>
+  <span style="flex: 1 1 auto"></span>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+
+<div style="padding: 16px; text-align: center">
+  <h2>Hello, {{ user?.name }}!</h2>
+  <p>Email: {{ user?.email }}</p>
+</div>
