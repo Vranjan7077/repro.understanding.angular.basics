@@ -1,0 +1,77 @@
+<section class="container">
+  <div class="section-header">
+    <div>
+      <h1>Pure CSS Scroll-Snap Carousel</h1>
+      <p class="subtitle">
+        Zero-library carousel built with CSS scroll-snap-type and a scroll event
+        listener for active slide detection — no jQuery, no Slick
+      </p>
+    </div>
+
+    <div class="nav-controls" *ngIf="!isLoading && images.length > 0">
+      <button
+        type="button"
+        class="nav-button"
+        [class.nav-button--enabled]="canGoPrev"
+        [disabled]="!canGoPrev"
+        (click)="scrollPrev()"
+        aria-label="Previous slide"
+      >
+        <span class="chevron chevron--left" aria-hidden="true"></span>
+      </button>
+
+      <span class="nav-count">{{ activeIndex + 1 }} / {{ images.length }}</span>
+
+      <button
+        type="button"
+        class="nav-button"
+        [class.nav-button--enabled]="canGoNext"
+        [disabled]="!canGoNext"
+        (click)="scrollNext()"
+        aria-label="Next slide"
+      >
+        <span class="chevron chevron--right" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <p class="status" *ngIf="isLoading">Loading images...</p>
+  <p class="status error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <div
+    class="scroll-track"
+    #scrollTrack
+    *ngIf="!isLoading && images.length > 0"
+  >
+    <article
+      class="snap-slide"
+      *ngFor="let image of images; let i = index"
+      [attr.data-index]="i"
+      [class.snap-slide--active]="i === activeIndex"
+    >
+      <div class="image-frame">
+        <img
+          [src]="image.url"
+          [alt]="image.title ? image.title : 'Carousel image'"
+          loading="lazy"
+        />
+      </div>
+      <div class="caption">
+        <p class="eyebrow">Scroll-Snap</p>
+        <h2>{{ image.title }}</h2>
+        <p class="author">{{ image.author }}</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="dot-nav" *ngIf="!isLoading && images.length > 0">
+    <button
+      type="button"
+      class="dot"
+      *ngFor="let image of images; let i = index"
+      [class.dot--active]="i === activeIndex"
+      (click)="scrollTo(i)"
+      [attr.aria-label]="'Go to slide ' + (i + 1)"
+    ></button>
+  </div>
+</section>

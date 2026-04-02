@@ -1,0 +1,140 @@
+@use "../../../../styles/slick-demo-shared" as demo;
+
+.container {
+  --surface: #ffffff;
+  --surface-soft: #f5f5f1;
+  --border: rgba(15, 23, 42, 0.1);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent: #0f172a;
+
+  //  background: linear-gradient(180deg, #fffdfa 0%, #ffffff 100%);
+}
+
+@include demo.demo-container(1320px, 2.75rem 1rem 3rem);
+@include demo.demo-header(2.4rem, 0.98rem);
+
+.slider-shell {
+  position: relative;
+}
+
+.carousel {
+  display: block;
+  margin: 0 -0.45rem;
+}
+
+.arrow-button {
+  position: absolute;
+  top: 125px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  background: rgba(15, 23, 42, 0.88);
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.18);
+  transition:
+    transform 120ms ease,
+    background-color 120ms ease;
+  transform: translateY(-50%);
+}
+
+.arrow-button:hover {
+  background: var(--accent);
+}
+
+.arrow-button--prev {
+  left: -0.35rem;
+}
+
+.arrow-button--next {
+  right: -0.35rem;
+}
+
+@include demo.demo-slick-structure;
+
+:host ::ng-deep .slick-dots {
+  bottom: -50px;
+}
+
+:host ::ng-deep .slick-dots {
+  margin: 0 2px;
+}
+
+:host ::ng-deep .slick-dots li button:before {
+  color: var(--accent);
+  font-size: 11px;
+  opacity: 0.28;
+}
+
+:host ::ng-deep .slick-dots li.slick-active button:before {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.slide-shell-item {
+  height: 100%;
+  padding: 0 0.45rem;
+}
+
+.slide {
+  height: 100%;
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.image-frame {
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+}
+
+.image-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  height: 250px;
+}
+
+.caption {
+  padding: 1rem;
+  color: var(--text-main);
+}
+
+@include demo.demo-copy(0.82rem, 0.94rem);
+
+.caption h2 {
+  margin: 0 0 0.35rem;
+  color: var(--text-main);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+@include demo.demo-status;
+@include demo.demo-header-stack(900px);
+
+@media (max-width: 768px) {
+  .arrow-button {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .arrow-button--prev {
+    left: 0.1rem;
+  }
+
+  .arrow-button--next {
+    right: 0.1rem;
+  }
+}
+
+@include demo.demo-mobile-container(520px, 2rem 0.85rem 2.5rem);

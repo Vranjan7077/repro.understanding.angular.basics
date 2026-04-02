@@ -1,0 +1,182 @@
+@use "../../../../styles/slick-demo-shared" as demo;
+
+@include demo.demo-host-block;
+
+.container {
+  --surface: #fffdf8;
+  --surface-soft: #f4efe7;
+  --border: rgba(15, 23, 42, 0.12);
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --accent: #0f172a;
+  --accent-soft: #d8cbb7;
+}
+
+@include demo.demo-container(1120px, 2.75rem 1rem 3rem);
+@include demo.demo-header(2.5rem, 1rem);
+
+.main-carousel-shell {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+}
+
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.2);
+  transition:
+    transform 150ms ease,
+    background-color 150ms ease;
+  transform: translateY(-50%);
+}
+
+.arrow-button:hover {
+  background: var(--accent);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.arrow-button--prev {
+  left: 0.75rem;
+}
+
+.arrow-button--next {
+  right: 0.75rem;
+}
+
+.gallery-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.main-carousel {
+  display: block;
+  min-width: 0;
+}
+
+.thumbnail-carousel {
+  display: block;
+  margin: 0 -0.35rem;
+  min-width: 0;
+}
+
+@include demo.demo-slick-structure;
+
+.main-slide-shell {
+  height: 100%;
+}
+
+.main-slide {
+  overflow: hidden;
+  background: linear-gradient(180deg, #fffdfa 0%, #ffffff 100%);
+}
+
+.hero-frame {
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255, 255, 255, 0.5),
+      transparent 35%
+    ),
+    var(--surface-soft);
+}
+
+.hero-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.details {
+  padding: 1.2rem 1.35rem 1.45rem;
+}
+
+@include demo.demo-copy(0.78rem, 1rem);
+
+.details h2 {
+  margin: 0 0 0.4rem;
+  color: var(--text-main);
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+.thumbnail-shell {
+  padding: 0 0.35rem;
+}
+
+.thumbnail-button {
+  width: 100%;
+  overflow: hidden;
+  border: 3px solid transparent;
+  border-radius: 18px;
+  padding: 0;
+  background: #ffffff;
+  cursor: pointer;
+  opacity: 0.55;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    opacity 250ms ease;
+}
+
+.thumbnail-button:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+.thumbnail-button--active {
+  opacity: 1;
+  border-color: var(--accent);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+  transform: translateY(-2px);
+}
+
+.thumbnail-button img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+@include demo.demo-status;
+@include demo.demo-header-stack(768px);
+
+@media (max-width: 768px) {
+  .arrow-button {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 0.9rem;
+  }
+
+  .arrow-button--prev {
+    left: 0.5rem;
+  }
+
+  .arrow-button--next {
+    right: 0.5rem;
+  }
+
+  .details {
+    padding: 1rem 1rem 1.2rem;
+  }
+}

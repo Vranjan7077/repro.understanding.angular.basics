@@ -1,0 +1,61 @@
+<section class="container">
+  <div class="section-header">
+    <div>
+      <h1>Dynamic Add / Remove Slides</h1>
+      <p class="subtitle">
+        Add and remove slides at runtime using Slick's addSlide &amp;
+        removeSlide API — demonstrates dynamic content management
+      </p>
+    </div>
+
+    <div class="action-controls" *ngIf="!isLoading && images.length > 0">
+      <span class="slide-count">{{ slideCount }} slides</span>
+
+      <button
+        type="button"
+        class="action-button action-button--add"
+        (click)="addSlide()"
+        aria-label="Add a slide"
+      >
+        + Add Slide
+      </button>
+
+      <button
+        type="button"
+        class="action-button action-button--remove"
+        [disabled]="!canRemove"
+        (click)="removeSlide()"
+        aria-label="Remove last slide"
+      >
+        − Remove Last
+      </button>
+    </div>
+  </div>
+
+  <p class="status" *ngIf="isLoading">Loading live images...</p>
+  <p class="status error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <ngx-slick-carousel
+    *ngIf="!isLoading && images.length > 0"
+    #slickModal="slick-carousel"
+    class="carousel"
+    [config]="slideConfig"
+  >
+    <div ngxSlickItem *ngFor="let image of images" class="slide-shell">
+      <article class="slide">
+        <div class="image-frame">
+          <img
+            [src]="image.url"
+            [alt]="image.title ? image.title : 'Carousel image'"
+          />
+        </div>
+
+        <div class="caption">
+          <p class="eyebrow">Dynamic</p>
+          <h2>{{ image.title }}</h2>
+          <p class="author">{{ image.author }}</p>
+        </div>
+      </article>
+    </div>
+  </ngx-slick-carousel>
+</section>

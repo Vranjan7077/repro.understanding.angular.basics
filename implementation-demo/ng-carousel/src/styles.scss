@@ -1,0 +1,48 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  color: #0f172a;
+  background: #eef2ff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.45;
+}
+
+.page-title {
+  margin: 0;
+  padding: 24px 20px 8px;
+  font-size: 28px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.page-subtitle {
+  margin: 0;
+  padding: 0 20px 20px;
+  text-align: center;
+  color: #334155;
+}
+
+// .container {
+//   width: min(1180px, 100%);
+//   margin: 0 auto;
+//   padding: 0 20px 28px;
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+//   gap: 16px;
+//   box-sizing: border-box;
+//   align-items: start;
+// }
+
+// .container.single-column {
+//   grid-template-columns: minmax(320px, 1fr);
+// }

@@ -1,0 +1,36 @@
+<section class="container">
+  <div class="section-header">
+    <div>
+      <h1>Live Slick Slider Example</h1>
+      <p class="subtitle">
+        Default Slick arrows with images loaded from the Picsum live API
+      </p>
+    </div>
+  </div>
+
+  <p class="status" *ngIf="isLoading">Loading live images...</p>
+  <p class="status error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <ngx-slick-carousel
+    *ngIf="!isLoading && images.length > 0"
+    class="carousel"
+    [config]="slideConfig"
+  >
+    <div ngxSlickItem *ngFor="let image of images" class="slide-shell">
+      <article class="slide">
+        <div class="image-frame">
+          <img
+            [src]="image.url"
+            [alt]="image.title ? image.title : 'Carousel image'"
+          />
+        </div>
+
+        <div class="caption">
+          <p class="eyebrow">Live Gallery</p>
+          <h2>{{ image.title }}</h2>
+          <p class="author">{{ image.author }}</p>
+        </div>
+      </article>
+    </div>
+  </ngx-slick-carousel>
+</section>

@@ -1,0 +1,198 @@
+@use "../../../styles/slick-demo-shared" as demo;
+
+@include demo.demo-host-block;
+
+.container {
+  --surface: #ffffff;
+  --surface-soft: #f5f5f1;
+  --border: rgba(15, 23, 42, 0.1);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --control-idle: #b6bec5;
+  --control-active: #0f172a;
+  --accent: #7c3aed;
+}
+
+@include demo.demo-container(1320px, 2.75rem 1rem 3rem);
+@include demo.demo-header(2.4rem, 0.98rem);
+
+.nav-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-top: 0.25rem;
+  white-space: nowrap;
+}
+
+.nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--control-idle);
+  color: #ffffff;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    opacity 180ms ease;
+}
+
+.nav-button:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.nav-button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+.nav-button--enabled {
+  background: var(--control-active);
+}
+
+.chevron {
+  display: inline-block;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+.chevron--left {
+  transform: rotate(-135deg);
+  margin-left: 2px;
+}
+
+.chevron--right {
+  transform: rotate(45deg);
+  margin-right: 2px;
+}
+
+.nav-count {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.scroll-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 0;
+
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.snap-slide {
+  flex: 0 0 calc(33.333% - 0.67rem);
+  scroll-snap-align: start;
+  border-radius: 20px;
+  background: var(--surface);
+  overflow: hidden;
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease,
+    opacity 300ms ease;
+  opacity: 0.7;
+}
+
+.snap-slide--active,
+.snap-slide:hover {
+  opacity: 1;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+.image-frame {
+  overflow: hidden;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-bottom: none;
+}
+
+.image-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  height: 250px;
+}
+
+.caption {
+  padding: 1rem;
+}
+
+@include demo.demo-copy(0.82rem, 0.94rem);
+
+.caption h2 {
+  margin: 0 0 0.35rem;
+  color: var(--text-main);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.dot-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  background: rgba(15, 23, 42, 0.2);
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    transform 200ms ease,
+    width 200ms ease;
+}
+
+.dot:hover {
+  background: rgba(15, 23, 42, 0.4);
+}
+
+.dot--active {
+  background: var(--accent);
+  width: 24px;
+  transform: scale(1);
+}
+
+@include demo.demo-status;
+@include demo.demo-header-stack(900px);
+
+@media (max-width: 900px) {
+  .nav-controls {
+    justify-content: flex-end;
+    padding-top: 0;
+  }
+
+  .snap-slide {
+    flex: 0 0 calc(50% - 0.5rem);
+  }
+}
+
+@media (max-width: 520px) {
+  .container {
+    padding: 2rem 0.85rem 2.5rem;
+  }
+
+  .snap-slide {
+    flex: 0 0 100%;
+  }
+}

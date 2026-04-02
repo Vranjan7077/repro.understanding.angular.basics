@@ -1,0 +1,144 @@
+@use "../../../../styles/slick-demo-shared" as demo;
+
+@include demo.demo-host-block;
+
+.container {
+  --surface: #ffffff;
+  --surface-soft: #f5f5f1;
+  --border: rgba(15, 23, 42, 0.1);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent: #0f172a;
+}
+
+@include demo.demo-container(1320px, 2.75rem 1rem 3rem);
+@include demo.demo-header(2.4rem, 0.98rem);
+
+.action-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding-top: 0.25rem;
+  white-space: nowrap;
+}
+
+.slide-count {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-width: 5em;
+}
+
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms ease, transform 150ms ease,
+    opacity 150ms ease;
+}
+
+.action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.action-button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.action-button--add {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.action-button--add:hover {
+  background: #15803d;
+}
+
+.action-button--remove {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.action-button--remove:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+.carousel {
+  display: block;
+  margin: 0 -0.45rem;
+}
+
+@include demo.demo-slick-structure;
+
+:host ::ng-deep .slick-dots {
+  bottom: -32px;
+}
+
+:host ::ng-deep .slick-dots li button:before {
+  color: var(--accent);
+  font-size: 11px;
+  opacity: 0.28;
+}
+
+:host ::ng-deep .slick-dots li.slick-active button:before {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.slide-shell {
+  height: 100%;
+  padding: 0 0.45rem;
+}
+
+.slide {
+  height: 100%;
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.image-frame {
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+}
+
+.image-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  height: 250px;
+}
+
+.caption {
+  padding: 1rem;
+}
+
+@include demo.demo-copy(0.82rem, 0.94rem);
+
+.caption h2 {
+  margin: 0 0 0.35rem;
+  color: var(--text-main);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+@include demo.demo-status;
+@include demo.demo-header-stack(900px);
+
+@media (max-width: 900px) {
+  .action-controls {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+@include demo.demo-mobile-container(520px, 2rem 0.85rem 2.5rem);

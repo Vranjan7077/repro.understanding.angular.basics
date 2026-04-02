@@ -1,0 +1,86 @@
+<section class="container">
+  <div class="section-header">
+    <div>
+      <h1>Autoplay with Progress Bar</h1>
+      <p class="subtitle">
+        Full-width fade carousel with an animated progress bar that resets per
+        slide, plus play/pause and dot navigation
+      </p>
+    </div>
+
+    <div class="controls" *ngIf="!isLoading && images.length > 0">
+      <button
+        type="button"
+        class="control-button"
+        (click)="showPrevious()"
+        aria-label="Previous slide"
+      >
+        <span aria-hidden="true">&larr;</span>
+      </button>
+
+      <button
+        type="button"
+        class="control-button control-button--pause"
+        (click)="togglePause()"
+        [attr.aria-label]="isPaused ? 'Play' : 'Pause'"
+      >
+        <span aria-hidden="true">{{ isPaused ? "▶" : "⏸" }}</span>
+      </button>
+
+      <button
+        type="button"
+        class="control-button"
+        (click)="showNext()"
+        aria-label="Next slide"
+      >
+        <span aria-hidden="true">&rarr;</span>
+      </button>
+    </div>
+  </div>
+
+  <p class="status" *ngIf="isLoading">Loading live images...</p>
+  <p class="status error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <div class="slider-wrapper" *ngIf="!isLoading && images.length > 0">
+    <ngx-slick-carousel
+      #slickModal="slick-carousel"
+      class="carousel"
+      [config]="slideConfig"
+      (beforeChange)="handleBeforeChange()"
+      (afterChange)="handleAfterChange($event)"
+    >
+      <div ngxSlickItem *ngFor="let image of images" class="slide-shell">
+        <article class="slide">
+          <img
+            [src]="image.url"
+            [alt]="image.title ? image.title : 'Carousel image'"
+          />
+          <div class="overlay">
+            <p class="overlay-eyebrow">Autoplay</p>
+            <h2>{{ image.title }}</h2>
+            <p class="overlay-author">{{ image.author }}</p>
+          </div>
+        </article>
+      </div>
+    </ngx-slick-carousel>
+
+    <div class="progress-track">
+      <div
+        class="progress-bar"
+        [class.progress-bar--active]="progressActive && !isPaused"
+        [style.animation-duration.ms]="autoplayDuration"
+      ></div>
+    </div>
+
+    <div class="dot-nav">
+      <button
+        type="button"
+        class="dot"
+        *ngFor="let image of images; let i = index"
+        [class.dot--active]="i === currentSlide"
+        (click)="goToSlide(i)"
+        [attr.aria-label]="'Go to slide ' + (i + 1)"
+      ></button>
+    </div>
+  </div>
+</section>

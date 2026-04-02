@@ -1,0 +1,122 @@
+@use "../../../styles/slick-demo-shared" as demo;
+
+.container {
+  --surface: #ffffff;
+  --surface-soft: #f5f5f1;
+  --border: rgba(15, 23, 42, 0.1);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent: #0f172a;
+}
+
+@include demo.demo-container(1320px, 2.75rem 1rem 3rem);
+@include demo.demo-header(2.4rem, 0.98rem);
+
+.carousel {
+  display: block;
+  margin: 0 -0.45rem;
+}
+
+@include demo.demo-slick-structure;
+
+:host ::ng-deep .slick-prev,
+:host ::ng-deep .slick-next {
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.88);
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.18);
+  top: 125px;
+}
+
+:host ::ng-deep .slick-prev {
+  left: -0.35rem;
+}
+
+:host ::ng-deep .slick-next {
+  right: -0.35rem;
+}
+
+:host ::ng-deep .slick-prev:before,
+:host ::ng-deep .slick-next:before {
+  color: #ffffff;
+  font-size: 1rem;
+  opacity: 1;
+}
+
+:host ::ng-deep .slick-dots {
+  bottom: -0.35rem;
+}
+
+:host ::ng-deep .slick-dots li button:before {
+  color: var(--accent);
+  font-size: 11px;
+  opacity: 0.28;
+}
+
+:host ::ng-deep .slick-dots li.slick-active button:before {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.slide-shell {
+  height: 100%;
+  padding: 0 0.45rem;
+}
+
+.slide {
+  height: 100%;
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.image-frame {
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+}
+
+.image-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  height: 250px;
+}
+
+.caption {
+  padding: 1rem;
+}
+
+@include demo.demo-copy(0.82rem, 0.94rem);
+
+.caption h2 {
+  margin: 0 0 0.35rem;
+  color: var(--text-main);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+@include demo.demo-status;
+
+@include demo.demo-header-stack(900px);
+
+@media (max-width: 768px) {
+  :host ::ng-deep .slick-prev,
+  :host ::ng-deep .slick-next {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  :host ::ng-deep .slick-prev {
+    left: 0.1rem;
+  }
+
+  :host ::ng-deep .slick-next {
+    right: 0.1rem;
+  }
+}
+
+@include demo.demo-mobile-container(520px, 2rem 0.85rem 2.5rem);

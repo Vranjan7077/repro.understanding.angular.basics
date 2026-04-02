@@ -1,0 +1,85 @@
+<section class="container">
+  <div class="section-header">
+    <div>
+      <h1>Custom Thumbnail Gallery</h1>
+      <p class="subtitle">
+        Main product-style gallery with synced thumbnail navigation
+      </p>
+    </div>
+  </div>
+
+  <p class="status" *ngIf="isLoading">Loading live images...</p>
+  <p class="status error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <div class="gallery-shell" *ngIf="!isLoading && images.length > 0">
+    <div class="main-carousel-shell">
+      <button
+        type="button"
+        class="arrow-button arrow-button--prev"
+        (click)="showPrevious()"
+        aria-label="Show previous image"
+      >
+        <span aria-hidden="true">&larr;</span>
+      </button>
+
+      <ngx-slick-carousel
+        #mainSlider="slick-carousel"
+        class="main-carousel"
+        [config]="mainSliderConfig"
+        (afterChange)="handleMainAfterChange($event)"
+      >
+        <div ngxSlickItem *ngFor="let image of images; let i = index" class="main-slide-shell">
+          <article class="main-slide">
+            <div class="hero-frame">
+              <img
+                [src]="image.url"
+                [alt]="image.title ? image.title : 'Gallery image'"
+              />
+            </div>
+
+            <div class="details">
+              <p class="eyebrow">Featured Shot {{ i + 1 }}</p>
+              <h2>{{ image.title }}</h2>
+              <p class="author">Captured by {{ image.author }}</p>
+            </div>
+          </article>
+        </div>
+      </ngx-slick-carousel>
+
+      <button
+        type="button"
+        class="arrow-button arrow-button--next"
+        (click)="showNext()"
+        aria-label="Show next image"
+      >
+        <span aria-hidden="true">&rarr;</span>
+      </button>
+    </div>
+
+    <ngx-slick-carousel
+      #thumbnailSlider="slick-carousel"
+      class="thumbnail-carousel"
+      [config]="thumbnailSliderConfig"
+    >
+      <div
+        ngxSlickItem
+        *ngFor="let image of images; let i = index"
+        class="thumbnail-shell"
+      >
+        <button
+          type="button"
+          class="thumbnail-button"
+          [class.thumbnail-button--active]="activeIndex === i"
+          (click)="goToSlide(i)"
+          [attr.aria-label]="'Show image ' + (i + 1)"
+          [attr.aria-pressed]="activeIndex === i"
+        >
+          <img
+            [src]="image.thumbnailUrl"
+            [alt]="image.title ? image.title : 'Thumbnail image'"
+          />
+        </button>
+      </div>
+    </ngx-slick-carousel>
+  </div>
+</section>

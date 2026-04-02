@@ -1,0 +1,48 @@
+<div class="container">
+  <h1>Image Carousel</h1>
+
+  <div class="carousel-card">
+    <button
+      type="button"
+      class="nav prev"
+      (click)="onPrev()"
+      aria-label="Previous image"
+    >
+      Prev
+    </button>
+
+    <div class="slide">
+      <img
+        [src]="images[activeIndex].url"
+        [alt]="
+          images[activeIndex].title
+            ? 'Carousel image: ' + images[activeIndex].title
+            : 'Carousel image'
+        "
+      />
+      <div class="caption">{{ images[activeIndex].title }}</div>
+    </div>
+
+    <button
+      type="button"
+      class="nav next"
+      (click)="onNext()"
+      aria-label="Next image"
+    >
+      Next
+    </button>
+  </div>
+
+  <div class="thumbs">
+    <button
+      type="button"
+      class="thumb"
+      *ngFor="let img of images; let i = index"
+      [class.active]="i === activeIndex"
+      (click)="onSelect(i)"
+      [attr.aria-label]="'Show image ' + (i + 1)"
+    >
+      <img [src]="img.thumbnailUrl" alt="" />
+    </button>
+  </div>
+</div>

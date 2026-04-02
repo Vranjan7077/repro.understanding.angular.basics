@@ -1,0 +1,66 @@
+<section class="container">
+  <div class="section-header">
+    <div>
+      <h1>Custom Pagination Slick Slider</h1>
+      <p class="subtitle">
+        External pagination with a top-right counter and navigation controls
+      </p>
+    </div>
+
+    <div class="pagination-controls" *ngIf="!isLoading && images.length > 0">
+      <button
+        type="button"
+        class="pagination-button"
+        [class.pagination-button--enabled]="canGoPrev"
+        [disabled]="!canGoPrev"
+        (click)="showPrevious()"
+        aria-label="Show previous slides"
+      >
+        <span class="chevron chevron--left" aria-hidden="true"></span>
+      </button>
+
+      <span class="pagination-count"
+        >{{ displayPosition }} / {{ totalPositions }}</span
+      >
+
+      <button
+        type="button"
+        class="pagination-button"
+        [class.pagination-button--enabled]="canGoNext"
+        [disabled]="!canGoNext"
+        (click)="showNext()"
+        aria-label="Show next slides"
+      >
+        <span class="chevron chevron--right" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <p class="status" *ngIf="isLoading">Loading live images...</p>
+  <p class="status error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <ngx-slick-carousel
+    *ngIf="!isLoading && images.length > 0"
+    #slickModal="slick-carousel"
+    class="carousel"
+    [config]="slideConfig"
+    (afterChange)="handleAfterChange($event)"
+  >
+    <div ngxSlickItem *ngFor="let image of images" class="slide-shell">
+      <article class="slide">
+        <div class="image-frame">
+          <img
+            [src]="image.url"
+            [alt]="image.title ? image.title : 'Carousel image'"
+          />
+        </div>
+
+        <div class="caption">
+          <p class="eyebrow">Live Gallery</p>
+          <h2>{{ image.title }}</h2>
+          <p class="author">{{ image.author }}</p>
+        </div>
+      </article>
+    </div>
+  </ngx-slick-carousel>
+</section>

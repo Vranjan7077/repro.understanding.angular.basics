@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#0369a1" />
+  <circle cx="990" cy="150" r="100" fill="#bae6fd" opacity="0.85" />
+  <circle cx="200" cy="520" r="140" fill="#bae6fd" opacity="0.3" />
+  <rect x="120" y="120" width="960" height="435" rx="32" fill="#ffffff" opacity="0.12" />
+  <text x="600" y="320" font-family="Arial, sans-serif" font-size="48" text-anchor="middle" fill="#ffffff">
+    Ocean waves on a bright day
+  </text>
+  <text x="600" y="390" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#f0f9ff">
+    Demo carousel image
+  </text>
+</svg>

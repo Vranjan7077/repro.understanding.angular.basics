@@ -1,0 +1,85 @@
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #111827;
+}
+
+.carousel-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.slide {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: min(60vw, 420px);
+  object-fit: cover;
+}
+
+.caption {
+  padding: 1rem;
+  color: #1f2937;
+  text-align: center;
+}
+
+.nav {
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.1rem;
+  background: #111827;
+  color: #fff;
+  cursor: pointer;
+}
+
+.thumbs {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.thumb {
+  border: 2px solid transparent;
+  background: transparent;
+  padding: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.thumb img {
+  display: block;
+  width: 88px;
+  height: 58px;
+  object-fit: cover;
+}
+
+.thumb.active {
+  border-color: #2563eb;
+}
+
+@media (max-width: 768px) {
+  .carousel-card {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    justify-self: center;
+  }
+}
