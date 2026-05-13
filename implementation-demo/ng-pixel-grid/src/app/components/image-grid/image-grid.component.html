@@ -1,0 +1,31 @@
+<div class="photo-list" *ngIf="isLoading">
+  <div class="photo-row" *ngFor="let i of skeletonRows">
+    <div class="photo-thumb photo-thumb--empty">
+      <span class="placeholder-icon"></span>
+    </div>
+    <div class="skeleton-title"></div>
+    <div class="row-status">
+      <span class="loader" aria-label="Loading image"></span>
+    </div>
+  </div>
+</div>
+
+<div class="error" *ngIf="errorMessage && !isLoading">
+  <p class="error-title">Something went wrong</p>
+  <p class="error-msg">{{ errorMessage }}</p>
+  <button class="retry-btn" (click)="loadImages()">Try Again</button>
+</div>
+
+<ng-container *ngIf="!isLoading && !errorMessage">
+  <div class="photo-list">
+    <app-image-card
+      *ngFor="let image of currentPageImages; trackBy: trackByImageId"
+      [image]="image"
+    ></app-image-card>
+  </div>
+
+  <app-image-pagination
+    [config]="paginationConfig"
+    (pageChange)="onPageChange($event)"
+  ></app-image-pagination>
+</ng-container>

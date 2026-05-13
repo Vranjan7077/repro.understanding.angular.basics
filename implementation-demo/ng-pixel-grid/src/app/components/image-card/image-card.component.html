@@ -1,0 +1,41 @@
+<article class="photo-row">
+  <div
+    class="photo-thumb thumb"
+    [class.photo-thumb--empty]="loadState !== 'loaded'"
+  >
+    <img
+      *ngIf="loadState !== 'error'"
+      [src]="imageUrl"
+      [alt]="'Photo by ' + image.author"
+      class="thumb-img"
+      [class.thumb-img--visible]="loadState === 'loaded'"
+      loading="lazy"
+      (load)="onImageLoad()"
+      (error)="onImageError()"
+    />
+
+    <span class="placeholder-icon" *ngIf="loadState !== 'loaded'"></span>
+  </div>
+
+  <div class="photo-info">
+    <span class="photo-title" *ngIf="loadState !== 'error'">
+      {{ image.author }}
+    </span>
+
+    <button
+      class="error-btn"
+      *ngIf="loadState === 'error'"
+      (click)="retryLoad()"
+    >
+      Failed to load
+    </button>
+  </div>
+
+  <div class="row-status" aria-live="polite">
+    <span
+      class="loader"
+      *ngIf="loadState === 'loading'"
+      aria-label="Loading image"
+    ></span>
+  </div>
+</article>

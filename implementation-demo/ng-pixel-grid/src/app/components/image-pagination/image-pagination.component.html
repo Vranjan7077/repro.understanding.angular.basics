@@ -1,0 +1,28 @@
+<nav class="pagination" *ngIf="config && config.totalPages > 1">
+  <button
+    class="page-btn"
+    [disabled]="config.currentPage === 1"
+    (click)="goToPage(config.currentPage - 1)"
+  >
+    ← Prev
+  </button>
+
+  <button
+    *ngFor="let page of visiblePages; trackBy: trackByPage"
+    class="page-btn"
+    [class.page-btn--active]="page === config.currentPage"
+    [class.page-btn--dots]="page === -1"
+    [disabled]="page === -1"
+    (click)="page !== -1 && goToPage(page)"
+  >
+    {{ page === -1 ? "…" : page }}
+  </button>
+
+  <button
+    class="page-btn"
+    [disabled]="config.currentPage === config.totalPages"
+    (click)="goToPage(config.currentPage + 1)"
+  >
+    Next →
+  </button>
+</nav>

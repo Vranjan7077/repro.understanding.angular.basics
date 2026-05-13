@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  width: 100%;
+
+  .photo-list {
+    width: min(100%, 520px);
+    margin: 0 auto;
+    background: #fff;
+  }
+
+  .skeleton-title {
+    width: min(190px, 80%);
+    height: 14px;
+    border-radius: 2px;
+    background: #ececec;
+  }
+
+  .error {
+    text-align: center;
+    padding: 60px 20px;
+
+    &-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    &-msg {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 16px;
+    }
+  }
+
+  .retry-btn {
+    padding: 8px 20px;
+    border: 1px solid #4a69bd;
+    border-radius: 4px;
+    background: #4a69bd;
+    color: #fff;
+    font-size: 0.85rem;
+
+    &:hover {
+      background: #3c5aa6;
+    }
+  }
+}
