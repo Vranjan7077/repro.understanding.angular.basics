@@ -1,0 +1,120 @@
+<main class="details-shell">
+  <a class="back-link" [routerLink]="['/']" [queryParams]="galleryQueryParams">
+    Back to gallery
+  </a>
+
+  @if (isLoading) {
+    <section class="notice" aria-live="polite">
+      Loading photo details...
+    </section>
+  }
+
+  @if (errorMessage) {
+    <section class="notice error" aria-live="polite">
+      {{ errorMessage }}
+    </section>
+  }
+
+  @if (photo; as selectedPhoto) {
+    <section class="details-layout">
+      <div class="image-panel">
+        <img
+          [src]="selectedPhoto.urls.regular"
+          [alt]="getPhotoDescription(selectedPhoto)"
+        />
+      </div>
+
+      <aside class="details-panel">
+        <div class="photographer">
+          <img
+            [src]="selectedPhoto.user.profile_image.medium"
+            [alt]="selectedPhoto.user.name"
+          />
+          <div>
+            <p class="eyebrow">Photo by</p>
+            <h1>{{ selectedPhoto.user.name }}</h1>
+            <a
+              [href]="selectedPhoto.user.links.html"
+              target="_blank"
+              rel="noopener"
+            >
+              <span aria-hidden="true">&#64;</span
+              >{{ selectedPhoto.user.username }}
+            </a>
+          </div>
+        </div>
+
+        <p class="description">{{ getPhotoDescription(selectedPhoto) }}</p>
+
+        <dl class="photo-meta">
+          <div>
+            <dt>Size</dt>
+            <dd>{{ selectedPhoto.width }} x {{ selectedPhoto.height }}</dd>
+          </div>
+          <div>
+            <dt>Likes</dt>
+            <dd>{{ selectedPhoto.likes }}</dd>
+          </div>
+          <div>
+            <dt>Color</dt>
+            <dd>
+              <span
+                class="color-swatch"
+                [style.background]="selectedPhoto.color"
+              ></span>
+              {{ selectedPhoto.color }}
+            </dd>
+          </div>
+        </dl>
+
+        <a
+          class="unsplash-link"
+          [href]="selectedPhoto.links.html"
+          target="_blank"
+          rel="noopener"
+        >
+          View on Unsplash
+        </a>
+      </aside>
+    </section>
+  }
+</main>
+
+@if (photo; as selectedPhoto) {
+  <section class="exif-card" aria-labelledby="exif-title">
+    <div>
+      <h2 id="exif-title">Camera details</h2>
+
+      <dl class="photo-meta">
+        <div>
+          <dt>Camera</dt>
+          <dd>{{ selectedPhoto.exif?.name || "Unknown" }}</dd>
+        </div>
+        <div>
+          <dt>Make</dt>
+          <dd>{{ selectedPhoto.exif?.make || "Unknown" }}</dd>
+        </div>
+        <div>
+          <dt>Model</dt>
+          <dd>{{ selectedPhoto.exif?.model || "Unknown" }}</dd>
+        </div>
+        <div>
+          <dt>Aperture</dt>
+          <dd>{{ selectedPhoto.exif?.aperture || "Unknown" }}</dd>
+        </div>
+        <div>
+          <dt>Exposure</dt>
+          <dd>{{ selectedPhoto.exif?.exposure_time || "Unknown" }}</dd>
+        </div>
+        <div>
+          <dt>Focal length</dt>
+          <dd>{{ selectedPhoto.exif?.focal_length || "Unknown" }}</dd>
+        </div>
+        <div>
+          <dt>ISO</dt>
+          <dd>{{ selectedPhoto.exif?.iso || "Unknown" }}</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+}

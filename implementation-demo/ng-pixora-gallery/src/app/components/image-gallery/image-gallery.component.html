@@ -1,0 +1,61 @@
+<main class="gallery-shell">
+  <header class="gallery-header">
+    <div>
+      <p class="eyebrow">Browse collection</p>
+      <h1>Discover photos</h1>
+    </div>
+
+    <app-image-search
+      [isLoading]="isLoading"
+      [searchTerm]="searchTerm"
+      (searchSubmitted)="search($event)"
+      (resetClicked)="resetGallery()"
+    />
+  </header>
+
+  @if (errorMessage) {
+    <section class="notice error" aria-live="polite">
+      {{ errorMessage }}
+    </section>
+  }
+
+  @if (!isLoading && photos.length === 0 && !errorMessage) {
+    <section class="notice" aria-live="polite">No photos found.</section>
+  }
+
+  <section class="masonry-grid">
+    @for (photo of photos; track photo.id; let isFirst = $first) {
+      <article class="photo-card">
+        <a
+          class="photo-link"
+          [routerLink]="['/photos', photo.id]"
+          [queryParams]="galleryQueryParams"
+          [attr.aria-label]="'View details for photo by ' + photo.user.name"
+        >
+          <img
+            [src]="photo.urls.regular"
+            [alt]="
+              photo.alt_description || photo.description || 'Unsplash photo'
+            "
+            [attr.loading]="isFirst ? 'eager' : 'lazy'"
+            [attr.fetchpriority]="isFirst ? 'high' : 'auto'"
+          />
+        </a>
+      </article>
+    }
+  </section>
+
+  <footer class="gallery-footer">
+    @if (isLoading) {
+      <span class="loading">Loading photos...</span>
+    } @else {
+      <button
+        type="button"
+        (click)="loadMore()"
+        [disabled]="photos.length === 0"
+      >
+        Load more
+      </button>
+    }
+  </footer>
+</main>
